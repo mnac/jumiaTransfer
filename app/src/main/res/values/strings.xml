@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Jumia Transfer</string>
+
+    <!-- value proposition-->
+    <string name="vp_highlight">Effectuer vos transfert vers Jumia en toute sécurité</string>
+    <string name="vp_cta">Effectuer un transfert</string>
+
+    <string name="form_wallet_id_hint">Jumia Wallet ID</string>
+    <string name="form_email_hint">Email</string>
+
+</resources>
