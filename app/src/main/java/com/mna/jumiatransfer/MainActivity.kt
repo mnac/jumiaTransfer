@@ -27,9 +27,7 @@ class MainActivity : AppCompatActivity(), Main {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, IntroFragment.newInstance(), INTRO_FRAGMENT)
-                    .commitNow()
+            setIntroFragment()
         }
 
         supportActionBar?.elevation = 0F
@@ -40,14 +38,19 @@ class MainActivity : AppCompatActivity(), Main {
 
     override fun onBackPressed() {
         when {
-            supportFragmentManager.findFragmentByTag(CONFIRMATION_FRAGMENT) != null ->
-                popCurrentFragment(CONFIRMATION_FRAGMENT)
+            supportFragmentManager.findFragmentByTag(CONFIRMATION_FRAGMENT) != null -> {
+                popCurrentFragment(INTRO_FRAGMENT)
+                setIntroFragment()
+            }
             supportFragmentManager.findFragmentByTag(SUMMARY_FRAGMENT) != null ->
                 popCurrentFragment(SUMMARY_FRAGMENT)
             supportFragmentManager.findFragmentByTag(AMOUNT_FRAGMENT) != null ->
                 popCurrentFragment(AMOUNT_FRAGMENT)
             supportFragmentManager.findFragmentByTag(FORM_FRAGMENT) != null ->
                 popCurrentFragment(FORM_FRAGMENT)
+            supportFragmentManager.findFragmentByTag(INTRO_FRAGMENT) != null -> {
+                finish()
+            }
             else -> {
                 super.onBackPressed()
             }
@@ -56,6 +59,13 @@ class MainActivity : AppCompatActivity(), Main {
 
     private fun popCurrentFragment(tag: String) {
         supportFragmentManager.popBackStack(tag, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+    }
+
+    private fun setIntroFragment() {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.container, IntroFragment.newInstance(), INTRO_FRAGMENT)
+                .addToBackStack(INTRO_FRAGMENT)
+                .commit()
     }
 
     override fun onDestroy() {

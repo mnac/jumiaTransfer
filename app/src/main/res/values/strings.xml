@@ -26,4 +26,10 @@
     <string name="amount_hint">Montant</string>
     <string name="amount_empty">Veuillez préciser le montant</string>
 
+    <string name="summary_title">Confirmer le transfert</string>
+    <string name="summary_email">Email</string>
+    <string name="summary_wallet_id">Jumia Wallet ID</string>
+    <string name="summary_amount">Montant</string>
+
+
 </resources>

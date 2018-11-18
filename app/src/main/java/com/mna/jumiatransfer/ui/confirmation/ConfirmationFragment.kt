@@ -5,8 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
+import com.mna.jumiatransfer.MainActivity
+import com.mna.jumiatransfer.R
 import com.mna.jumiatransfer.databinding.ConfirmationFragmentBinding
+import com.mna.jumiatransfer.ui.amount.AmountFragment
+import com.mna.jumiatransfer.ui.intro.IntroFragment
 
 class ConfirmationFragment : Fragment() {
 
@@ -22,6 +27,18 @@ class ConfirmationFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mViewModel = ViewModelProviders.of(this).get(ConfirmationViewModel::class.java)
+        mBinding.viewModel = mViewModel
+        mBinding.handlers = this
+    }
+
+    fun onValidate(@Suppress("UNUSED_PARAMETER") v: View) {
+        activity!!.supportFragmentManager
+                .popBackStack(MainActivity.INTRO_FRAGMENT, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+        activity!!.supportFragmentManager.beginTransaction()
+                .replace(R.id.container, IntroFragment.newInstance(), MainActivity.INTRO_FRAGMENT)
+                .addToBackStack(MainActivity.INTRO_FRAGMENT)
+                .commit()
     }
 
     companion object {
