@@ -45,13 +45,14 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 app:hintEnabled="false"
+                app:errorTextAppearance="@style/ErrorAppearance"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/emailTitleTxtVw">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/walletEdtTxt"
+                    android:id="@+id/emailEdtTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
@@ -89,12 +90,13 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 app:hintEnabled="false"
+                app:errorTextAppearance="@style/ErrorAppearance"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/walletIdTitleTxtVw">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/emailEdtTxt"
+                    android:id="@+id/walletEdtTxt"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:imeOptions="actionDone"

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mna.jumiatransfer.R
 import com.mna.jumiatransfer.ui.ItemClick
 
-class HistoryAdapter(private val walletIds: Set<String>, private val itemClick: ItemClick<String>)
+class HistoryAdapter(private val walletIds: ArrayList<String>, private val itemClick: ItemClick<String>)
     : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryAdapter.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)

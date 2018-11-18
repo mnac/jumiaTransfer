@@ -2,6 +2,8 @@ package com.mna.jumiatransfer.ui.form
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,8 +42,33 @@ class FormFragment : Fragment() {
         mBinding.viewModel = mViewModel
         mBinding.handlers = this
 
-        mMain.getUserRepository().getWalletIdsHistory(object: RepositoryCallback<Set<String>> {
-            override fun onSuccess(data: Set<String>) {
+        mBinding.emailEdtTxt.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (!mViewModel.isEmailEmpty() && !mViewModel.isInvalidEmail()) {
+                    onWalletIdValid()
+                }
+            }
+        })
+
+        mBinding.walletEdtTxt.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (!mViewModel.isWalletIdEmpty() && !mViewModel.isWalletIdInvalid()) {
+                    onWalletIdValid()
+                }
+            }
+        })
+
+
+        mMain.getUserRepository().getWalletIdsHistory(object: RepositoryCallback<ArrayList<String>> {
+            override fun onSuccess(data: ArrayList<String>) {
                 onHistory(data)
             }
         })
@@ -53,7 +80,7 @@ class FormFragment : Fragment() {
         })
     }
 
-    private fun onHistory(data: Set<String>) {
+    private fun onHistory(data: ArrayList<String>) {
         if (data.isNotEmpty()) {
             mBinding.walletIdsRecyclerVw.layoutManager = LinearLayoutManager(context)
             mBinding.walletIdsRecyclerVw.adapter = HistoryAdapter(data, object : ItemClick<String> {

@@ -17,11 +17,13 @@
     <string name="form_wallet_id_title">Selectionnez l\'ID du compte Jumia de destination</string>
     <string name="form_wallet_id_hint">Jumia Wallet ID</string>
     <string name="form_wallet_id_empty">Le Wallet ID est obligatoire</string>
-    <string name="form_wallet_id_invalid">Wallet ID n\'est pas valide</string>
+    <string name="form_wallet_id_invalid">Le Wallet ID est composé de 8 caractères</string>
 
-    <string name="form_wallet_history_title">Mon historique de transfert</string>
+    <string name="form_wallet_history_title">Depuis mon historique</string>
+    <string name="form_wallet_history_item">• </string>
 
     <string name="amount_title">Montant du transfert</string>
     <string name="amount_hint">Montant</string>
+    <string name="amount_empty">Veuillez préciser le montant</string>
 
 </resources>

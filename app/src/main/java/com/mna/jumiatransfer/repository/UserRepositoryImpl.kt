@@ -6,6 +6,7 @@ import com.f2prateek.rx.preferences2.Preference
 import com.f2prateek.rx.preferences2.RxSharedPreferences
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import org.json.JSONArray
 
 
 class UserRepositoryImpl(context: Context) : UserRepository {
@@ -16,14 +17,15 @@ class UserRepositoryImpl(context: Context) : UserRepository {
 
     private var disposables: CompositeDisposable
 
-    private var walletIdsPreference: Preference<Set<String>>
+    private var walletIdsPreference: Preference<String>
     private var emailPreference: Preference<String>
 
     init {
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
         val rxPreferences = RxSharedPreferences.create(preferences)
+
         disposables = CompositeDisposable()
-        walletIdsPreference = rxPreferences.getStringSet(WALLET_IDS_KEY)
+        walletIdsPreference = rxPreferences.getString(WALLET_IDS_KEY)
         emailPreference = rxPreferences.getString(EMAIL_KEY)
     }
 
@@ -38,16 +40,33 @@ class UserRepositoryImpl(context: Context) : UserRepository {
                 .subscribe(callback::onSuccess))
     }
 
-    override fun getWalletIdsHistory(callback: RepositoryCallback<Set<String>>) {
+    override fun getWalletIdsHistory(callback: RepositoryCallback<ArrayList<String>>) {
         disposables.add(walletIdsPreference
                 .asObservable()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(callback::onSuccess))
+                .subscribe {
+                    callback.onSuccess(deserializeIds(it))
+                })
     }
 
     override fun addWalletIdInHistory(walletId: String) {
-        val ids = walletIdsPreference.get()
-        walletIdsPreference.set(ids.plus(walletId))
+        val ids = LinkedHashSet<String>()
+        ids.add(walletId)
+        ids.addAll(deserializeIds(walletIdsPreference.get()))
+        walletIdsPreference.set(JSONArray(ids).toString())
+    }
+
+    private fun deserializeIds(serializedIds: String): ArrayList<String>  {
+        val ids = ArrayList<String>()
+
+        if (serializedIds.isNotEmpty()) {
+            val jsonArray = JSONArray(serializedIds)
+            for (i in 0 until jsonArray.length()) {
+                ids.add(jsonArray.get(i) as String)
+            }
+        }
+
+        return ids
     }
 
     override fun clear() {
