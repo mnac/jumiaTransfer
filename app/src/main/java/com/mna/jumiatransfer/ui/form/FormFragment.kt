@@ -40,15 +40,9 @@ class FormFragment : Fragment() {
         mBinding.viewModel = mViewModel
         mBinding.handlers = this
 
-        mBinding.walletIdsRecyclerVw.layoutManager = LinearLayoutManager(context)
         mMain.getUserRepository().getWalletIdsHistory(object: RepositoryCallback<Set<String>> {
             override fun onSuccess(data: Set<String>) {
-                mBinding.walletIdsRecyclerVw.adapter = HistoryAdapter(data, object: ItemClick<String> {
-                    override fun onClick(data: String) {
-                        onClickHistoryItem(data)
-                    }
-
-                })
+                onHistory(data)
             }
         })
 
@@ -57,6 +51,23 @@ class FormFragment : Fragment() {
                 mViewModel.email.set(data)
             }
         })
+    }
+
+    private fun onHistory(data: Set<String>) {
+        if (data.isNotEmpty()) {
+            mBinding.walletIdsRecyclerVw.layoutManager = LinearLayoutManager(context)
+            mBinding.walletIdsRecyclerVw.adapter = HistoryAdapter(data, object : ItemClick<String> {
+                override fun onClick(data: String) {
+                    onClickHistoryItem(data)
+                }
+            })
+
+            mBinding.walletIdsTitleTxtVw.visibility = View.VISIBLE
+            mBinding.walletIdsRecyclerVw.visibility = View.VISIBLE
+        } else {
+            mBinding.walletIdsTitleTxtVw.visibility = View.GONE
+            mBinding.walletIdsRecyclerVw.visibility = View.GONE
+        }
     }
 
     private fun onClickHistoryItem(walletId: String) {
