@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mna.jumiatransfer.Main
 import com.mna.jumiatransfer.MainActivity
 import com.mna.jumiatransfer.R
+import com.mna.jumiatransfer.SharedViewModel
 import com.mna.jumiatransfer.databinding.FormFragmentBinding
 import com.mna.jumiatransfer.repository.RepositoryCallback
 import com.mna.jumiatransfer.ui.ItemClick
@@ -22,6 +23,7 @@ import com.mna.jumiatransfer.ui.amount.AmountFragment
 class FormFragment : Fragment() {
 
     private lateinit var mBinding: FormFragmentBinding
+    private var sharedViewModel: SharedViewModel? = null
     private lateinit var mViewModel: FormViewModel
     private lateinit var mMain: Main
 
@@ -38,6 +40,9 @@ class FormFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        sharedViewModel = activity?.let {
+            ViewModelProviders.of(it).get(SharedViewModel::class.java)
+        }
         mViewModel = ViewModelProviders.of(this).get(FormViewModel::class.java)
         mBinding.viewModel = mViewModel
         mBinding.handlers = this
@@ -130,6 +135,9 @@ class FormFragment : Fragment() {
                     onEmailValid()
                 }
             }
+
+            sharedViewModel?.email?.value = mViewModel.email.get()
+            sharedViewModel?.walletId?.value = mViewModel.walletId.get()
 
             mMain.getUserRepository().updateEmail(mViewModel.email.get()!!)
             mMain.getUserRepository().addWalletIdInHistory(mViewModel.walletId.get()!!)

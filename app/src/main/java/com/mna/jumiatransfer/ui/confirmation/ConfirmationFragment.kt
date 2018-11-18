@@ -9,13 +9,14 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
 import com.mna.jumiatransfer.MainActivity
 import com.mna.jumiatransfer.R
+import com.mna.jumiatransfer.SharedViewModel
 import com.mna.jumiatransfer.databinding.ConfirmationFragmentBinding
-import com.mna.jumiatransfer.ui.amount.AmountFragment
 import com.mna.jumiatransfer.ui.intro.IntroFragment
 
 class ConfirmationFragment : Fragment() {
 
     private lateinit var mBinding: ConfirmationFragmentBinding
+    private var sharedViewModel: SharedViewModel? = null
     private var mViewModel: ConfirmationViewModel? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +27,9 @@ class ConfirmationFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        sharedViewModel = activity?.let {
+            ViewModelProviders.of(it).get(SharedViewModel::class.java)
+        }
         mViewModel = ViewModelProviders.of(this).get(ConfirmationViewModel::class.java)
         mBinding.viewModel = mViewModel
         mBinding.handlers = this

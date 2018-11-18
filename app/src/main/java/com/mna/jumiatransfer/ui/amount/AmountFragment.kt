@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.mna.jumiatransfer.MainActivity
 import com.mna.jumiatransfer.R
+import com.mna.jumiatransfer.SharedViewModel
 import com.mna.jumiatransfer.databinding.AmountFragmentBinding
 import com.mna.jumiatransfer.ui.summary.SummaryFragment
 import com.mna.jumiatransfer.utils.PriceTextWatcher
@@ -22,6 +23,7 @@ import java.text.NumberFormat
 class AmountFragment : Fragment() {
 
     private lateinit var mBinding: AmountFragmentBinding
+    private var sharedViewModel: SharedViewModel? = null
     private var mViewModel: AmountViewModel? = null
 
     override fun onAttach(context: Context?) {
@@ -40,6 +42,9 @@ class AmountFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        sharedViewModel = activity?.let {
+            ViewModelProviders.of(it).get(SharedViewModel::class.java)
+        }
         mViewModel = ViewModelProviders.of(this).get(AmountViewModel::class.java)
         mBinding.handlers = this
         mBinding.viewModel = mViewModel
@@ -78,6 +83,7 @@ class AmountFragment : Fragment() {
                     return
                 }
                 else -> {
+                    sharedViewModel?.amount?.value = mViewModel!!.amount
                     onAmountValid()
                 }
             }
