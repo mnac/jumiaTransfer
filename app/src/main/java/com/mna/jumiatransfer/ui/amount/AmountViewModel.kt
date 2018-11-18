@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 
 
 class AmountViewModel : ViewModel() {
-    var amount: Int = 0
+    var amount: Double = 0.0
 
     fun isAmountEmpty(): Boolean {
         return true

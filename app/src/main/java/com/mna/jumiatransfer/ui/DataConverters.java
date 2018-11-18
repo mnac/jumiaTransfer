@@ -1,23 +1,29 @@
 package com.mna.jumiatransfer.ui;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 
 import androidx.databinding.InverseMethod;
 
 public class DataConverters {
 
-    public static int toPrice(String value) {
+    public static double toPrice(String value) {
         try {
-            String price = value.replaceAll("[^\\d.]", "").trim();
-            return Integer.parseInt(price);
+            String price = value.replaceAll("[^0-9.,]", "").trim();
+            String priceFormatted = price.replaceAll(",", ".").trim();
+            return Double.parseDouble(priceFormatted);
         } catch (NumberFormatException e) {
-            return -1;
+            return 0.0;
         }
     }
 
     @InverseMethod("toPrice")
-    public static String fromPrice(int value) {
+    public static String fromPrice(double value) {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        DecimalFormatSymbols decimalFormatSymbols = ((DecimalFormat) formatter).getDecimalFormatSymbols();
+        decimalFormatSymbols.setCurrencySymbol("");
+        ((DecimalFormat) formatter).setDecimalFormatSymbols(decimalFormatSymbols);
         return formatter.format(value);
     }
 }

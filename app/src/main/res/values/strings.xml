@@ -21,6 +21,7 @@
 
     <string name="form_wallet_history_title">Mon historique de transfert</string>
 
+    <string name="amount_title">Montant du transfert</string>
     <string name="amount_hint">Montant</string>
 
 </resources>
