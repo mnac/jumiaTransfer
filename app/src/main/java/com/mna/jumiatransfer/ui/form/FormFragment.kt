@@ -1,5 +1,6 @@
 package com.mna.jumiatransfer.ui.form
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,15 +8,23 @@ import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.mna.jumiatransfer.Main
 import com.mna.jumiatransfer.MainActivity
 import com.mna.jumiatransfer.R
 import com.mna.jumiatransfer.databinding.FormFragmentBinding
+import com.mna.jumiatransfer.repository.RepositoryCallback
 import com.mna.jumiatransfer.ui.amount.AmountFragment
 
 class FormFragment : Fragment() {
 
     private lateinit var mBinding: FormFragmentBinding
     private lateinit var mViewModel: FormViewModel
+    private lateinit var mMain: Main
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        mMain = context as Main
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -28,6 +37,12 @@ class FormFragment : Fragment() {
         mViewModel = ViewModelProviders.of(this).get(FormViewModel::class.java)
         mBinding.viewModel = mViewModel
         mBinding.handlers = this
+
+        mMain.getUserRepository().getEmail(object: RepositoryCallback<String> {
+            override fun onSuccess(data: String) {
+                mViewModel.email.set(data)
+            }
+        })
     }
 
     fun onValidForm(@Suppress("UNUSED_PARAMETER") v: View) {
@@ -59,6 +74,9 @@ class FormFragment : Fragment() {
                     onEmailValid()
                 }
             }
+
+            mMain.getUserRepository().updateEmail(mViewModel.email.get()!!)
+            mMain.getUserRepository().addWalletIdInHistory(mViewModel.walletId.get()!!)
 
             activity!!.supportFragmentManager.beginTransaction()
                     .replace(R.id.container, AmountFragment.newInstance(), MainActivity.AMOUNT_FRAGMENT)

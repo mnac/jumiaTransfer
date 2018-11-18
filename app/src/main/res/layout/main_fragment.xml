@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="handlers" type="com.mna.jumiatransfer.ui.main.MainFragment" />
+        <variable name="handlers" type="com.mna.jumiatransfer.ui.intro.IntroFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        tools:context=".ui.main.MainFragment">
+        tools:context=".ui.intro.IntroFragment">
 
         <TextView
             android:id="@+id/mainTxtVw"

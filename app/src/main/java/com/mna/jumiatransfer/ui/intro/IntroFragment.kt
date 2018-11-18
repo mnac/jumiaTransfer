@@ -1,4 +1,4 @@
-package com.mna.jumiatransfer.ui.main
+package com.mna.jumiatransfer.ui.intro
 
 import android.os.Bundle
 import android.os.Handler
@@ -14,11 +14,10 @@ import com.mna.jumiatransfer.R
 import com.mna.jumiatransfer.databinding.MainFragmentBinding
 import com.mna.jumiatransfer.ui.form.FormFragment
 
-class MainFragment : Fragment() {
+class IntroFragment : Fragment() {
 
     private lateinit var mBinding: MainFragmentBinding
-    private var mViewModel: MainViewModel? = null
-
+    private var mViewModel: IntroViewModel? = null
 
     @StringRes
     private val highlightResources = intArrayOf(
@@ -48,12 +47,23 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        mViewModel = ViewModelProviders.of(this).get(IntroViewModel::class.java)
         mBinding.handlers = this
-        startHighlightAnimation()
+
+        initHighlightAnimation()
     }
 
-    private fun startHighlightAnimation() {
+    override fun onStart() {
+        super.onStart()
+        highlightHandler.post(runnable)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        highlightHandler.removeCallbacks(runnable)
+    }
+
+    private fun initHighlightAnimation() {
         maxItem = highlightResources.size
 
         val inAnim = AnimationUtils.loadAnimation(context, R.anim.slide_in_top)
@@ -62,8 +72,6 @@ class MainFragment : Fragment() {
         outAnim.duration = 250
         mBinding.textSwitcher.inAnimation = inAnim
         mBinding.textSwitcher.outAnimation = outAnim
-
-        highlightHandler.post(runnable)
     }
 
     fun onClickGoToTransfer(@Suppress("UNUSED_PARAMETER") v: View) {
@@ -76,8 +84,8 @@ class MainFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(): MainFragment {
-            return MainFragment()
+        fun newInstance(): IntroFragment {
+            return IntroFragment()
         }
     }
 
