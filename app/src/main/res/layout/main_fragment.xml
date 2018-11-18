@@ -16,7 +16,7 @@
         tools:context=".ui.main.MainFragment">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/mainTxtVw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -24,15 +24,45 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginBottom="8dp"
             android:text="@string/vp_highlight"
             android:textColor="@android:color/white"
-            android:textSize="30sp"
+            android:textSize="44sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread_inside" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextSwitcher
+            android:id="@+id/textSwitcher"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainTxtVw">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxEms="8"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:textSize="44sp"
+                tools:text="@string/vp_highlight_case_1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxEms="8"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:textSize="44sp" />
+
+        </TextSwitcher>
 
         <Button
             android:id="@+id/button"
@@ -43,14 +73,13 @@
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginBottom="24dp"
+            android:onClick="@{handlers::onClickGoToTransfer}"
             android:text="@string/vp_cta"
             android:textAllCaps="false"
-            android:onClick="@{handlers::onClickGoToTransfer}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

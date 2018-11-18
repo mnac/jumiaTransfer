@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable name="handlers" type="com.mna.jumiatransfer.ui.form.FormFragment" />
         <variable name="viewModel" type="com.mna.jumiatransfer.ui.form.FormViewModel" />
     </data>
 
@@ -20,49 +21,55 @@
             tools:context=".ui.form.FormFragment">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout4"
+                android:id="@+id/walletIdTxtInputLyt"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="46dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 android:hint="@string/form_wallet_id_hint"
-                app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/walletEdtTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:imeOptions="actionNext" />
+                    android:text="@={viewModel.walletId}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
+                android:id="@+id/emailTxtInputLyt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
+                android:layout_marginBottom="24dp"
                 android:hint="@string/form_email_hint"
                 app:layout_constraintBottom_toTopOf="@+id/button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
+                app:layout_constraintTop_toBottomOf="@+id/walletIdTxtInputLyt"
+                app:layout_constraintVertical_bias="0.0">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailEdtTxt"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:imeOptions="actionDone"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:text="@={viewModel.email}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,13 +81,13 @@
                 android:layout_marginLeft="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="24dp"
+                android:onClick="@{handlers::onValidForm}"
                 android:text="@string/vp_cta"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

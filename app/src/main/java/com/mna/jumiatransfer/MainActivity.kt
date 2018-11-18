@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
                     .replace(R.id.container, MainFragment.newInstance(), MAIN_FRAGMENT)
                     .commitNow()
         }
+
+        supportActionBar?.elevation = 0F
     }
 
     override fun onBackPressed() {

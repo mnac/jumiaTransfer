@@ -2,10 +2,20 @@
     <string name="app_name">Jumia Transfer</string>
 
     <!-- value proposition-->
-    <string name="vp_highlight">Effectuer vos transfert vers Jumia en toute sécurité</string>
+    <string name="vp_highlight">Effectuer vos transferts vers Jumia en toute</string>
+    <string name="vp_highlight_case_1">sécurité</string>
+    <string name="vp_highlight_case_2">simplicité</string>
+    <string name="vp_highlight_case_3">sérénité</string>
     <string name="vp_cta">Effectuer un transfert</string>
 
     <string name="form_wallet_id_hint">Jumia Wallet ID</string>
+    <string name="form_wallet_id_empty">Le Wallet ID est obligatoire</string>
+    <string name="form_wallet_id_invalid">Wallet ID n\'est pas valide</string>
+
     <string name="form_email_hint">Email</string>
+    <string name="form_email_empty">L\'email est obligatoire</string>
+    <string name="form_email_invalid">L`email n\'est pas valide</string>
+
+    <string name="amount_hint">Montant</string>
 
 </resources>

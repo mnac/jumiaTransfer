@@ -22,6 +22,12 @@ class AmountFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mViewModel = ViewModelProviders.of(this).get(AmountViewModel::class.java)
+        mBinding.handlers = this
+        mBinding.viewModel = mViewModel
+    }
+
+    fun onValidAmount(@Suppress("UNUSED_PARAMETER") v: View) {
+
     }
 
     companion object {
