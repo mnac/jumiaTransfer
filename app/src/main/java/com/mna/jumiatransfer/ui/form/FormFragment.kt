@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mna.jumiatransfer.Main
 import com.mna.jumiatransfer.MainActivity
 import com.mna.jumiatransfer.R
 import com.mna.jumiatransfer.databinding.FormFragmentBinding
 import com.mna.jumiatransfer.repository.RepositoryCallback
+import com.mna.jumiatransfer.ui.ItemClick
 import com.mna.jumiatransfer.ui.amount.AmountFragment
 
 class FormFragment : Fragment() {
@@ -38,11 +40,27 @@ class FormFragment : Fragment() {
         mBinding.viewModel = mViewModel
         mBinding.handlers = this
 
+        mBinding.walletIdsRecyclerVw.layoutManager = LinearLayoutManager(context)
+        mMain.getUserRepository().getWalletIdsHistory(object: RepositoryCallback<Set<String>> {
+            override fun onSuccess(data: Set<String>) {
+                mBinding.walletIdsRecyclerVw.adapter = HistoryAdapter(data, object: ItemClick<String> {
+                    override fun onClick(data: String) {
+                        onClickHistoryItem(data)
+                    }
+
+                })
+            }
+        })
+
         mMain.getUserRepository().getEmail(object: RepositoryCallback<String> {
             override fun onSuccess(data: String) {
                 mViewModel.email.set(data)
             }
         })
+    }
+
+    private fun onClickHistoryItem(walletId: String) {
+        mBinding.viewModel?.walletId?.set(walletId)
     }
 
     fun onValidForm(@Suppress("UNUSED_PARAMETER") v: View) {

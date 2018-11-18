@@ -20,20 +20,34 @@
             android:background="@color/colorPrimary"
             tools:context=".ui.form.FormFragment">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/walletIdTxtInputLyt"
+            <TextView
+                android:id="@+id/emailTitleTxtVw"
                 android:layout_width="0dp"
-                android:layout_height="46dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
-                android:hint="@string/form_wallet_id_hint"
+                android:text="@string/form_email_title"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailTxtInputLyt"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/emailTitleTxtVw">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/walletEdtTxt"
@@ -42,26 +56,38 @@
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:text="@={viewModel.walletId}" />
+                    android:hint="@string/form_email_hint"
+                    android:text="@={viewModel.email}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/emailTxtInputLyt"
+            <TextView
+                android:id="@+id/walletIdTitleTxtVw"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
-                android:layout_marginBottom="24dp"
-                android:hint="@string/form_email_hint"
-                app:layout_constraintBottom_toTopOf="@+id/button"
+                android:text="@string/form_wallet_id_title"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/walletIdTxtInputLyt"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintTop_toBottomOf="@+id/emailTxtInputLyt" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/walletIdTxtInputLyt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/walletIdTitleTxtVw">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/emailEdtTxt"
@@ -69,9 +95,43 @@
                     android:layout_height="match_parent"
                     android:imeOptions="actionDone"
                     android:inputType="textEmailAddress"
-                    android:text="@={viewModel.email}" />
+                    android:hint="@string/form_wallet_id_hint"
+                    android:text="@={viewModel.walletId}" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/walletIdsTitleTxtVw"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:text="@string/form_wallet_history_title"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/walletIdTxtInputLyt"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/walletIdsRecyclerVw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginLeft="48dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/walletIdsTitleTxtVw"
+                app:layout_constraintVertical_bias="0.0" />
 
             <Button
                 android:id="@+id/button"
