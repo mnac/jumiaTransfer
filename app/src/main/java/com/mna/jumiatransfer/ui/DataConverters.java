@@ -1,9 +1,12 @@
 package com.mna.jumiatransfer.ui;
 
+import android.view.View;
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 
+import androidx.databinding.BindingAdapter;
 import androidx.databinding.InverseMethod;
 
 public class DataConverters {
@@ -26,4 +29,10 @@ public class DataConverters {
         ((DecimalFormat) formatter).setDecimalFormatSymbols(decimalFormatSymbols);
         return formatter.format(value);
     }
+
+    @BindingAdapter("android:visibility")
+    public static void setVisibility(View view, Boolean value) {
+        view.setVisibility(value ? View.VISIBLE : View.GONE);
+    }
+
 }

@@ -1,7 +1,7 @@
 package com.mna.jumiatransfer.repository
 
-import java.util.*
+import com.mna.jumiatransfer.model.TransferStatus
 
 interface TransferRepository: Repository {
-    fun transfer(amount: Int, currency: Currency, walletId: String, email: String)
+    fun transfer(amount: Double, walletId: String, email: String, callback: RepositoryCallback<TransferStatus>)
 }

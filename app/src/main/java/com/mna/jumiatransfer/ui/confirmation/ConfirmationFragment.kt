@@ -46,8 +46,16 @@ class ConfirmationFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(): ConfirmationFragment {
-            return ConfirmationFragment()
+        private const val EMAIL_KEY = "email_key"
+        private const val AMOUNT_KEY = "amount_key"
+
+        fun newInstance(email: String, amount: Double): ConfirmationFragment {
+            val fragment = ConfirmationFragment()
+            val bundle = Bundle()
+            bundle.putString(EMAIL_KEY, email)
+            bundle.putDouble(AMOUNT_KEY, amount)
+            fragment.arguments = bundle
+            return fragment
         }
     }
 }
