@@ -8,7 +8,7 @@
     <string name="vp_highlight_case_3">sérénité</string>
     <string name="vp_cta">Effectuer un transfert</string>
 
-
+    <string name="form_cta">Continuer</string>
     <string name="form_email_title">Mon email</string>
     <string name="form_email_hint">Email</string>
     <string name="form_email_empty">L\'email est obligatoire</string>
@@ -22,14 +22,18 @@
     <string name="form_wallet_history_title">Depuis mon historique</string>
     <string name="form_wallet_history_item">• </string>
 
+    <string name="amount_cta">Continuer</string>
     <string name="amount_title">Montant du transfert</string>
     <string name="amount_hint">Montant</string>
     <string name="amount_empty">Veuillez préciser le montant</string>
 
+    <string name="summary_cta">Confirmer</string>
     <string name="summary_title">Confirmer le transfert</string>
     <string name="summary_email">Email</string>
     <string name="summary_wallet_id">Jumia Wallet ID</string>
     <string name="summary_amount">Montant</string>
 
+
+    <string name="confirmation_cta">Terminer</string>
 
 </resources>

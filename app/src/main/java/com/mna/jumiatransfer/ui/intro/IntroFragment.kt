@@ -11,12 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.mna.jumiatransfer.MainActivity
 import com.mna.jumiatransfer.R
-import com.mna.jumiatransfer.databinding.MainFragmentBinding
+import com.mna.jumiatransfer.databinding.IntroFragmentBinding
 import com.mna.jumiatransfer.ui.form.FormFragment
 
 class IntroFragment : Fragment() {
 
-    private lateinit var mBinding: MainFragmentBinding
+    private lateinit var mBinding: IntroFragmentBinding
     private var mViewModel: IntroViewModel? = null
 
     @StringRes
@@ -41,7 +41,7 @@ class IntroFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        mBinding = MainFragmentBinding.inflate(inflater, container, false)
+        mBinding = IntroFragmentBinding.inflate(inflater, container, false)
         return mBinding.root
     }
 
