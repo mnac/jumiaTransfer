@@ -45,9 +45,9 @@ class SummaryFragment : Fragment() {
         mBinding.viewModel = mViewModel
         mBinding.handlers = this
         sharedViewModel?.let {
-            mBinding.emailValue.text = it.email.value!!
-            mBinding.amountValue.text = DataConverters.fromPrice(it.amount.value!!)
-            mBinding.walletIdValue.text = it.walletId.value!!
+            mBinding.emailValue.text = it.getEmail()
+            mBinding.amountValue.text = it.getAmountDisplay()
+            mBinding.walletIdValue.text = it.getWalletId()
         }
     }
 
@@ -64,9 +64,9 @@ class SummaryFragment : Fragment() {
         }
     }
 
-    private fun goToConfirmationFragment(email: String, amount: Double) {
+    private fun goToConfirmationFragment(name: String, amount: Double) {
         activity!!.supportFragmentManager.beginTransaction()
-                .replace(R.id.container, ConfirmationFragment.newInstance(email, amount), MainActivity.CONFIRMATION_FRAGMENT)
+                .replace(R.id.container, ConfirmationFragment.newInstance(name, amount), MainActivity.CONFIRMATION_FRAGMENT)
                 .addToBackStack(MainActivity.CONFIRMATION_FRAGMENT)
                 .commit()
     }

@@ -33,6 +33,9 @@ class ConfirmationFragment : Fragment() {
         mViewModel = ViewModelProviders.of(this).get(ConfirmationViewModel::class.java)
         mBinding.viewModel = mViewModel
         mBinding.handlers = this
+        sharedViewModel?.let {
+            mBinding.titleTxtVw.text = getString(R.string.confirmation_title, it.getAmountDisplay(), arguments!![NAME_KEY])
+        }
     }
 
     fun onValidate(@Suppress("UNUSED_PARAMETER") v: View) {
@@ -46,13 +49,13 @@ class ConfirmationFragment : Fragment() {
     }
 
     companion object {
-        private const val EMAIL_KEY = "email_key"
+        private const val NAME_KEY = "name_key"
         private const val AMOUNT_KEY = "amount_key"
 
-        fun newInstance(email: String, amount: Double): ConfirmationFragment {
+        fun newInstance(name: String, amount: Double): ConfirmationFragment {
             val fragment = ConfirmationFragment()
             val bundle = Bundle()
-            bundle.putString(EMAIL_KEY, email)
+            bundle.putString(NAME_KEY, name)
             bundle.putDouble(AMOUNT_KEY, amount)
             fragment.arguments = bundle
             return fragment

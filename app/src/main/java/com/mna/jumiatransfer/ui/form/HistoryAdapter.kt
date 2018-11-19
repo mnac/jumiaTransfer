@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.mna.jumiatransfer.AppConstants.Companion.HISTORY_LENGTH
 import com.mna.jumiatransfer.R
 import com.mna.jumiatransfer.ui.ItemClick
 
@@ -17,10 +18,10 @@ class HistoryAdapter(private val walletIds: ArrayList<String>, private val itemC
     }
 
     override fun getItemCount(): Int {
-        return if (walletIds.size < 5) {
+        return if (walletIds.size < HISTORY_LENGTH) {
             walletIds.size
         } else {
-            5
+            HISTORY_LENGTH
         }
     }
 

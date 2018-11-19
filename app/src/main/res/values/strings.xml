@@ -36,4 +36,6 @@
 
     <string name="confirmation_cta">Terminer</string>
 
+    <string name="confirmation_title">Félicitation,\nle montant de %1$s\na bien été envoyé à\n%2$s</string>
+
 </resources>

@@ -144,7 +144,7 @@
 
             <Button
                 android:id="@+id/button"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/default_btn_height"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
@@ -154,8 +154,10 @@
                 android:onClick="@{handlers::onValidForm}"
                 android:text="@string/form_cta"
                 android:textColor="@android:color/white"
-                android:textSize="22sp"
-                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:drawablePadding="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
